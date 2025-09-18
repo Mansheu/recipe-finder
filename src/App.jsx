@@ -707,6 +707,13 @@ const RTitle = styled.h4`
   font-size:1rem;
 `;
 
+// New: recipe description text
+const RDesc = styled.p`
+  margin: 6px 0 10px 0;
+  color: ${({ theme }) => theme.mode === 'dark' ? 'rgba(255,255,255,0.88)' : 'rgba(31,45,33,0.85)'};
+  line-height: 1.4;
+`;
+
 const RMeta = styled.div`
   display:flex;
   gap:12px;
@@ -1256,6 +1263,10 @@ ${fallbackMessage}`);
                                     </HeaderIconBtn>
                                   </HeaderActions>
                                 </RecipeHeader>
+
+                                {/* New: show recipe description if available */}
+                                {r.description && <RDesc>{r.description}</RDesc>}
+
                                 <div style={{ marginBottom: 8 }}>
                                   <strong style={{ color: themeMode === 'dark' ? 'rgba(255,255,255,0.9)' : 'rgba(31,45,33,0.85)' }}>Ingredients:</strong>&nbsp;
                                   {r.ingredients.map((ing, i) => (
@@ -1395,7 +1406,7 @@ ${fallbackMessage}`);
                       </ThemeProvider>
                       );
                     }
-     
+
 
 
 
