@@ -64,6 +64,14 @@ const AppShell = styled.div`
   display: flex;
   justify-content: center;
   padding: 48px 24px;
+
+  @media (max-width: 768px) {
+    padding: 32px 18px;
+  }
+
+  @media (max-width: 540px) {
+    padding: 24px 12px;
+  }
   font-family: Inter, system-ui, -Apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -77,6 +85,14 @@ const Content = styled.main`
   display: flex;
   flex-direction: column;
   gap: 28px;
+
+  @media (max-width: 768px) {
+    gap: 22px;
+  }
+
+  @media (max-width: 540px) {
+    gap: 18px;
+  }
 `;
 
 
@@ -105,6 +121,10 @@ const Footer = styled.footer`
     ? '0 8px 28px rgba(9,13,9,0.45)'
     : '0 8px 28px rgba(28,48,32,0.16)'};
   animation: ${footerReveal} 0.8s ease-out;
+
+  @media (max-width: 480px) {
+    padding: 20px;
+  }
 `;
 
 const FooterMessages = styled.div`
@@ -184,6 +204,14 @@ const H1 = styled.h1`
   color: ${({ theme }) => theme.palette.text};
   font-weight: 700;
   letter-spacing: -0.02em;
+
+  @media (max-width: 640px) {
+    font-size: 1.9rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.7rem;
+  }
 `;
 
 const Sub = styled.p`
@@ -193,6 +221,14 @@ const Sub = styled.p`
   font-size: 1rem;
   line-height: 1.45;
   opacity: 0.95;
+
+  @media (max-width: 640px) {
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const Card = styled.section`
@@ -202,6 +238,14 @@ const Card = styled.section`
   padding: 20px;
   border: ${({ theme }) => theme.mode === 'dark' ? '1px solid rgba(255,255,255,0.04)' : '1px solid rgba(0,0,0,0.08)'};
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  @media (max-width: 720px) {
+    padding: 18px;
+  }
+
+  @media (max-width: 520px) {
+    padding: 16px;
+  }
 `;
 
 /* Top bar inside the card */
@@ -211,13 +255,28 @@ const CardTop = styled.div`
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 18px;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 `;
+
 const CardTopRight = styled.div`
   display:flex;
   align-items:center;
   justify-content:flex-end;
   gap:12px;
   flex-wrap:wrap;
+
+  @media (max-width: 640px) {
+    width: 100%;
+    justify-content:flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 `;
 
 const ThemeToggleButton = styled.button`
@@ -304,6 +363,14 @@ const Section = styled.div`
   border-radius: 12px;
   border: ${({ theme }) => theme.mode === 'dark' ? '1px solid rgba(255,255,255,0.03)' : '1px solid rgba(0,0,0,0.08)'};
   transition: background 0.3s ease, border-color 0.3s ease;
+
+  @media (max-width: 600px) {
+    padding: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 14px;
+  }
 `;
 
 const SectionHeader = styled.div`
@@ -330,9 +397,14 @@ const SearchRow = styled.div`
   display:flex;
   gap:12px;
   align-items:center;
+
+  @media (max-width: 520px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
 `;
 
-// FIX: Improved search icon button placement
 const InputWrap = styled.div`
   flex: 1;
   display: grid;
@@ -343,6 +415,11 @@ const InputWrap = styled.div`
   padding: 8px 10px;
   border: ${({ theme }) => theme.mode === 'dark' ? '1px solid rgba(255,255,255,0.04)' : '1px solid rgba(0,0,0,0.08)'};
   transition: box-shadow .16s ease, transform .06s ease, background 0.2s ease, border-color 0.2s ease;
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+  }
 
   &:focus-within{
     box-shadow: ${({ theme }) => theme.mode === 'dark' ? '0 6px 18px rgba(99,160,112,0.12)' : '0 6px 18px rgba(15,31,21,0.1)'};
@@ -374,6 +451,11 @@ const IconBtn = styled.button`
   font-size:1rem;
   box-shadow: 0 6px 18px rgba(97,158,109,0.12);
   margin-left: 4px;
+
+  @media (max-width: 520px) {
+    width: 100%;
+    margin-left: 0;
+  }
 `;
 
 const PopularWrap = styled.div`
@@ -490,8 +572,8 @@ const DietBtn = styled.button`
   padding:8px 14px;
   border-radius:999px;
   border: 1px solid ${({ theme }) => theme.mode === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.1)'};
-  background: ${({ active }) => (active ? 'linear-gradient(90deg,var(--accent-2),var(--accent-3))' : 'transparent')};
-  color: ${({ active, theme }) => (active ? theme.palette.accentContrast : theme.palette.text)};
+  background: ${({ $active }) => ($active ? 'linear-gradient(90deg,var(--accent-2),var(--accent-3))' : 'transparent')};
+  color: ${({ $active, theme }) => ($active ? theme.palette.accentContrast : theme.palette.text)};
   cursor:pointer;
   font-weight:600;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
@@ -522,6 +604,11 @@ const Recipe = styled.article`
   background: ${({ theme }) => theme.mode === 'dark' ? 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))' : 'linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.015))'};
   border: ${({ theme }) => theme.mode === 'dark' ? '1px solid rgba(255,255,255,0.03)' : '1px solid rgba(0,0,0,0.08)'};
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 const Thumb = styled.img`
@@ -530,6 +617,11 @@ const Thumb = styled.img`
   object-fit:cover;
   border-radius:8px;
   flex-shrink:0;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    height: 180px;
+  }
 `;
 
 const RContent = styled.div`
@@ -541,11 +633,25 @@ const RecipeHeader = styled.div`
   align-items:flex-start;
   justify-content:space-between;
   gap:12px;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 12px; /* add space below buttons on mobile */
+  }
 `;
 
 const HeaderActions = styled.div`
   display:inline-flex;
   gap:6px;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+  }
 `;
 
 const HeaderIconBtn = styled.button`
@@ -555,17 +661,21 @@ const HeaderIconBtn = styled.button`
   padding: 4px 10px;
   min-width: 36px;
   border-radius:999px;
-  border: 1px solid ${({ variant, theme }) => (variant === 'primary' ? 'transparent' : theme.palette.btnSecondaryBorder)};
-  background: ${({ variant, theme }) => (variant === 'primary' ? `linear-gradient(135deg, ${theme.palette.accentMidLight}, ${theme.palette.accentMid})` : theme.palette.btnSecondaryBg)};
-  color: ${({ variant, theme }) => (variant === 'primary' ? theme.palette.accentContrast : theme.palette.btnSecondaryText)};
+  border: 1px solid ${({ $variant, theme }) => ($variant === 'primary' ? 'transparent' : theme.palette.btnSecondaryBorder)};
+  background: ${({ $variant, theme }) => ($variant === 'primary' ? `linear-gradient(135deg, ${theme.palette.accentMidLight}, ${theme.palette.accentMid})` : theme.palette.btnSecondaryBg)};
+  color: ${({ $variant, theme }) => ($variant === 'primary' ? theme.palette.accentContrast : theme.palette.btnSecondaryText)};
   font-size: 0.72rem;
   font-weight: 600;
   cursor:pointer;
   transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
   white-space: nowrap;
 
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+
   &:hover {
-    border-color: ${({ variant, theme }) => (variant === 'primary' ? 'transparent' : theme.mode === 'dark' ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.2)')};
+    border-color: ${({ $variant, theme }) => ($variant === 'primary' ? 'transparent' : theme.mode === 'dark' ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.2)')};
     transform: translateY(-1px);
   }
 
@@ -583,6 +693,12 @@ const FavoriteIconBtn = styled(HeaderIconBtn)`
   width: 32px;
   min-width: 32px;
   padding: 0;
+
+  @media (max-width: 700px) {
+    width: 38px;
+    min-width: 38px;
+    justify-self: start;
+  }
 `;
 
 const RTitle = styled.h4`
@@ -597,14 +713,19 @@ const RMeta = styled.div`
   align-items:center;
   color: ${({ theme }) => theme.mode === 'dark' ? 'rgba(255,255,255,0.8)' : 'rgba(31,45,33,0.75)'};
   font-size:0.95rem;
+
+  @media (max-width: 700px) {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 `;
 
 const IngredientSpan = styled.span`
-  color: ${({ highlighted, theme }) =>
-    highlighted
+  color: ${({ $highlighted, theme }) =>
+    $highlighted
       ? (theme.mode === 'dark' ? 'var(--accent-2)' : theme.palette.accentDark)
       : (theme.mode === 'dark' ? 'rgba(255,255,255,0.9)' : theme.palette.text)};
-  font-weight: ${({ highlighted }) => (highlighted ? 700 : 400)};
+  font-weight: ${({ $highlighted }) => ($highlighted ? 700 : 400)};
 `;
 
 const NoResults = styled.div`
@@ -641,19 +762,18 @@ const MethodButton = styled.button`
   box-shadow: 0 8px 18px rgba(9, 19, 12, 0.35);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 
+  @media (max-width: 700px) {
+    width: 100%;
+    justify-content: center;
+  }
+
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 12px 24px rgba(9, 19, 12, 0.45);
+    box-shadow: 0 8px 18px rgba(9, 19, 12, 0.4);
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 6px 16px rgba(9, 19, 12, 0.35);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--accent-1);
-    outline-offset: 2px;
   }
 `;
 
@@ -665,6 +785,10 @@ const MethodPanel = styled.div`
   border: ${({ theme }) => theme.mode === 'dark' ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0,0,0,0.1)'};
   color: ${({ theme }) => theme.mode === 'dark' ? 'rgba(255,255,255,0.88)' : 'rgba(31,45,33,0.85)'};
   line-height: 1.55;
+
+  @media (max-width: 700px) {
+    padding: 14px;
+  }
 `;
 
 const MethodList = styled.ol`
@@ -994,6 +1118,8 @@ ${fallbackMessage}`);
                 <SearchRow>
                   <InputWrap>
                     <Input
+                      id="ingredient-search"            // added
+                      name="ingredient-search"          // added
                       placeholder="Search ingredient"
                       value={ingredientInput}
                       onChange={e => { setIngredientInput(e.target.value); setShowSuggestions(true); if (ingredientError) setIngredientError(''); }}
@@ -1049,7 +1175,7 @@ ${fallbackMessage}`);
                         return (
                           <DietBtn
                             key={d.key}
-                            active={isActive}
+                            $active={isActive}
                             onClick={() =>
                               setSelectedDiets(prev =>
                                 prev.includes(d.key)
@@ -1093,7 +1219,7 @@ ${fallbackMessage}`);
                                                                                                                               <HeaderActions>
                                     <FavoriteIconBtn
                                       type="button"
-                                      variant={favoriteRecipes[r.id] ? 'primary' : 'secondary'}
+                                      $variant={favoriteRecipes[r.id] ? 'primary' : 'secondary'}
                                       onClick={() => toggleFavorite(r.id)}
                                       aria-pressed={!!favoriteRecipes[r.id]}
                                       aria-label={favoriteRecipes[r.id] ? `Remove ${r.name} from favorites` : `Add ${r.name} to favorites`}
@@ -1103,7 +1229,7 @@ ${fallbackMessage}`);
                                     </FavoriteIconBtn>
                                     <HeaderIconBtn
                                       type="button"
-                                      variant="secondary"
+                                      $variant="secondary"
                                       onClick={() => handlePrintRecipe(r)}
                                       aria-label={`Print ${r.name}`}
                                       title="Print recipe"
@@ -1112,7 +1238,7 @@ ${fallbackMessage}`);
                                     </HeaderIconBtn>
                                     <HeaderIconBtn
                                       type="button"
-                                      variant="secondary"
+                                      $variant="secondary"
                                       onClick={() => handleEmailRecipe(r)}
                                       aria-label={`Email ${r.name}`}
                                       title="Email recipe"
@@ -1121,7 +1247,7 @@ ${fallbackMessage}`);
                                     </HeaderIconBtn>
                                     <HeaderIconBtn
                                       type="button"
-                                      variant="secondary"
+                                      $variant="secondary"
                                       onClick={() => handleShareRecipe(r)}
                                       aria-label={`Share ${r.name}`}
                                       title="Share recipe"
@@ -1135,7 +1261,7 @@ ${fallbackMessage}`);
                                   {r.ingredients.map((ing, i) => (
                                     <IngredientSpan
                                       key={ing + i}
-                                      highlighted={ingredients.some(x => x.toLowerCase() === ing.toLowerCase())}
+                                      $highlighted={ingredients.some(x => x.toLowerCase() === ing.toLowerCase())}
                                     >
                                       {titleCase(ing)}{i < r.ingredients.length - 1 ? ', ' : ''}
                                     </IngredientSpan>
@@ -1229,43 +1355,49 @@ ${fallbackMessage}`);
                       <Pill onClick={() => alert('Copy to clipboard not implemented in demo')}>Copy</Pill>
                     </div>
 
-                    {ingredients.length >= 3 && (
-                      <div>
-                        <Small style={{ display:'block', marginTop:12 }}>Select a "must have" ingredient (optional)</Small>
-                        <MustSelect value={mustHave} onChange={e => setMustHave(e.target.value)}>
-                          <option value="">(none)</option>
-                          {ingredients.map(i => <option key={i} value={i}>{titleCase(i)}</option>)}
-                        </MustSelect>
-                      </div>
-                    )}
-                  </Chips>
-                )}
+                                        {ingredients.length >= 3 && (
+                                          <div>
+                                            <Small>
+                                              Select a must-have ingredient to narrow results.
+                                            </Small>
+                                            <MustSelect
+                                              value={mustHave}
+                                              onChange={e => setMustHave(e.target.value)}
+                                              aria-label="Must-have ingredient"
+                                            >
+                                              <option value="">No must-have</option>
+                                              {ingredients.map(ing => (
+                                                <option key={ing} value={ing}>{titleCase(ing)}</option>
+                                              ))}
+                                            </MustSelect>
+                                          </div>
+                                        )}
+                                      </Chips>
+                                    )}
+                                  </Section>
+                                </RightInner>
+                              </Grid>
+                    
+                            </Card>
+                    
+                            <Footer aria-live="polite">
+                              <FooterMessages>
+                                {footerMessages.map((msg, idx) => (
+                                  <FooterSentence key={idx} $active={activeFooterMessage === idx}>
+                                    {msg}
+                                  </FooterSentence>
+                                ))}
+                              </FooterMessages>
+                            </Footer>
+                    
+                          </Content>
+                        </AppShell>
+                      </ThemeProvider>
+                      );
+                    }
+     
 
-              </Section>
-            </RightInner>
 
-          </Grid>
-        </Card>
-
-
-        <Footer>
-          <FooterMessages>
-            {footerMessages.map((message, index) => (
-              <FooterSentence
-                key={index}
-                $active={index === activeFooterMessage}
-                aria-hidden={index !== activeFooterMessage}
-              >
-                {message}
-              </FooterSentence>
-            ))}
-          </FooterMessages>
-        </Footer>
-        </Content>
-      </AppShell>
-    </ThemeProvider>
-  );
-}
 
 
 
